@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>star</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: rgba(2, 2, 2, 0.7)
+        }
+    </style>
+</head>
+<script src="https://cdn.bootcss.com/konva/1.6.3/konva.min.js"></script>
+<script src="https://cdn.bootcss.com/underscore.js/1.8.3/underscore-min.js"></script>
+
+<body>
+    <div id="container">
+
+    </div>
+</body>
+<script>
+    var stage = new Konva.Stage({
+        container: "container",
+        width: window.innerWidth,
+        height: window.innerHeight
+    });
+    var layer = new Konva.Layer();
+
+    function getStar() {
+        var scale = Math.random();
+        var star = new Konva.Star({
+            x: Math.random() * stage.getWidth(),
+            y: Math.random() * stage.getHeight(),
+            numPoints: _.random(5, 8),
+            innerRadius: _.random(5, 15),
+            outerRadius: _.random(25, 35),
+            fill: 'white',
+            opacity: 0.8,
+            rotation: Math.random() * 180,
+            draggable: true,
+            rotation: Math.random() * 180,
+            shadowColor: 'white',
+            shadowBlur: 10,
+            shadowOffset: {
+                x: 5,
+                y: 5
+            },
+            shadowOpacity: 0.6
+        })
+        layer.add(star);
+
+        var period = _.random(1000, 3000)
+        var anim = new Konva.Animation(function(frame) {
+            var scale = Math.sin(frame.time * 2 * Math.PI / period) + 0.001;
+            star.scale({
+                x: scale,
+                y: scale
+            });
+        }, layer);
+        anim.start();
+    }
+    for (var i = 0; i < 75; i++) {
+        getStar()
+    }
+    // add the layer to the stage
+    stage.add(layer);
+</script>
+
+</html>

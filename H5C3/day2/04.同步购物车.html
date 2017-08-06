@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>同步购物车</title>
+</head>
+
+<body>
+
+    <input type="checkbox" name="iii" value="eat">吃<br/>
+    <input type="checkbox" name="iii" value="drink">喝<br/>
+    <input type="checkbox" name="iii" value="play">玩<br/>
+    <input type="checkbox" name="iii" value="happy">乐<br/>
+    <input type="checkbox" name="iii" value="en">哈<br/>
+    <button type="">清空</button>
+</body>
+<script>
+    /*    var oInput = document.getElementsByTagName("input");
+                                      
+                                        for (var i = 0; i < oInput.length; i++) {
+                                            oInput[i].onclick = function() {
+                                                if (this.checked) {
+                                                    localStorage.name = this.value;
+                                                    console.log(localStorage)
+                                                } else {
+                                                    
+                                                    console.log(111)
+                                                }
+
+                                            }
+                                        }
+                                        window.addEventListener("storage", function(ev) {
+                                            console.log(localStorage)
+                                            for (var i = 0; i < oInput.length; i++) {
+                                                if (oInput[i].value == localStorage.name) {
+                                                    oInput[i].checked = true
+                                                }
+
+                                            }
+                                        })
+                                    */
+
+    var oInput = document.getElementsByTagName("input");
+    for (var i = 0; i < oInput.length; i++) {
+        oInput[i].onclick = function() {
+            if (this.checked) {
+                localStorage.setItem('addShop', this.value)
+                console.log(localStorage)
+            } else {
+                localStorage.setItem('rmShop', this.value)
+            }
+
+        }
+    }
+    window.addEventListener("storage", function(ev) {
+        console.log(ev)
+        if (ev.key == 'addShop') {
+            for (var i = 0; i < oInput.length; i++) {
+                if (ev.newValue == oInput[i].value) {
+                    oInput[i].checked = true;
+                }
+            }
+        } else if (ev.key == 'rmShop') {
+            for (var i = 0; i < oInput.length; i++) {
+                if (ev.newValue == oInput[i].value) {
+                    oInput[i].checked = false;
+                }
+            }
+        }
+    })
+
+    var oBtn = document.querySelector("button");
+    oBtn.onclick = function() {
+
+        localStorage.clear()
+    }
+</script>
+
+</html>

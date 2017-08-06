@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>snake</title>
+</head>
+<style type="text/css">
+	*{
+		margin:0;
+		padding:0;
+	}
+	table{
+		border:3px solid #ccc;
+	}
+	td{
+		width: 20px;
+		height:20px;
+		border-radius: 50%;
+	}
+	.color{
+		background:skyblue ;
+	}
+	.foodc{
+		background:red;
+	}
+	.title{
+		font-size: 40px;
+	}
+	.left{
+		float: left;
+		width: 460px;
+		height:600px;
+		text-align: center;
+		padding:0 70px;
+	}
+	.right{
+		float:left;
+		padding:50px;
+
+	}
+	.right .score{
+		margin:100px 0;
+		font-size: 20px;
+	}
+	.over{
+		position:absolute;
+		width:300px;
+		height:150px;
+		padding-top:50px;
+		background: rgba(0,0,0,0.4);
+		text-align: center;
+		top:100px;
+		left:150px;
+		font-size: 20px;
+		display: none;
+	}
+	.over p{
+		height:40px;
+		line-height: 20px;
+		color:white;
+	}
+	.over button{
+		width: 100px;
+		height:50px;
+	}
+	#start{
+		width: 100px;
+		height:30px;
+		font-size: 20px;
+	}
+</style>
+<body style="position: relative">
+	<div class="left">
+		<p class="title">贪吃蛇</p>
+		<table id="table"></table>
+	</div>
+	<div class="right">
+		<p>游戏方法：通过上下左右进行操控</p>
+		<p class="score">分数：<span id="score"></span></p>
+		<p>速度：
+			<select id="speed">
+				<option>100</option>
+				<option>200</option>
+				<option>300</option>
+				<option>400</option>
+				<option>500</option>
+			</select>
+		</p>
+		<br />
+		<p><button id ="start">开始</button></p>
+	</div>
+	<div class="over">
+		<p>GAMEOVER</p>
+		<p>获得分数	<span id="overscore"></span></p>
+		
+		<p><button id ="again">重新开始</button></p>
+	</div>
+
+</body>
+<script type="text/javascript">
+	function Map(){
+		var oTable = document.getElementById("table");
+		this.max = 20;
+		this.mapArr=[];
+		for (var i = 0; i < this.max; i++) {
+			var tr = document.createElement("tr");
+			var trArr = []; 
+			for (var j = 0; j < this.max; j++) {
+				var td = document.createElement("td");
+				tr.appendChild(td);
+				trArr.push(td);
+			}
+			this.mapArr.push(trArr);
+			oTable.appendChild(tr);
+		}
+	}
+	function Snake(){
+		this.bodyArr = [
+			{x:4,y:8},
+			{x:4,y:7},
+			{x:4,y:6},
+			{x:4,y:5}
+		];
+		this.direction = "right" ; 
+		this.score = document.getElementById("score");
+		num = 0; 
+		this.score.innerHTML = 0 ;
+
+		this.oOver = document.getElementsByClassName("over")[0];
+		this.oOverscore = document.getElementById("overscore");
+		this.render();
+		this.keyEvent();
+	}
+	Snake.prototype.render = function(){   
+		if(this.bodyArr[0].x >= map.max||this.bodyArr[0].x < 0 ||
+			this.bodyArr[0].y >= map.max||this.bodyArr[0].y < 0){
+			this.over();
+			return;
+		}
+		for (var m = 0; m < map.max; m++) {    
+			for (var n = 0; n < map.max; n++) {
+				map.mapArr[m][n].className = ""
+			}
+		}
+		for (var i = 0; i < this.bodyArr.length; i++) { 
+			map.mapArr[this.bodyArr[i].x][this.bodyArr[i].y].className = "color"
+		}
+	}
+	Snake.prototype.move = function(){
+		this.bodyArr.pop();
+		switch(this.direction){ 
+			case "right":
+				this.bodyArr.unshift({
+					x:this.bodyArr[0].x,
+					y:this.bodyArr[0].y + 1
+				});
+				break;
+			case "left":
+				this.bodyArr.unshift({
+					x:this.bodyArr[0].x,
+					y:this.bodyArr[0].y - 1
+				});
+				break;
+			case "up":
+				this.bodyArr.unshift({
+					x:this.bodyArr[0].x - 1,
+					y:this.bodyArr[0].y
+				});
+				break;
+			case "down":
+				this.bodyArr.unshift({
+					x:this.bodyArr[0].x + 1,
+					y:this.bodyArr[0].y
+				});
+				break;
+			default:
+		}
+		snake.eat(); 
+		for (var i = 1; i < this.bodyArr.length; i++) {
+			if(this.bodyArr[0].x == this.bodyArr[i].x && this.bodyArr[0].y == this.bodyArr[i].y){
+				this.over();
+			}
+		}
+	}
+	Snake.prototype.keyEvent = function(){
+		var self=this;
+		document.onkeydown =function(ev){
+			var ev = ev||event;
+			switch(ev.keyCode){
+				case 37:
+					if (self.direction == "right") {
+						return;
+					}
+					self.direction = "left";
+					break;
+				case 38:
+					if (self.direction == "down") {
+						return;
+					}
+					self.direction = "up";
+					break;
+				case 39:
+					if (self.direction == "left") {
+						return;
+					}
+					self.direction = "right";
+					break;
+				case 40:
+					if (self.direction == "up") {
+						return;
+					}
+					self.direction = "down";
+					break;
+				default:
+			}
+		}
+	}
+	Snake.prototype.eat =function(){		
+		if(this.bodyArr[0].x == food.Foodx && this.bodyArr[0].y == food.Foody  ){
+			switch(this.direction){
+			case "right":
+				this.bodyArr.push({
+					x:this.bodyArr[0].x,
+					y:this.bodyArr[0].y - 1
+				});
+				break;
+			case "left":
+				this.bodyArr.push({
+					x:this.bodyArr[0].x,
+					y:this.bodyArr[0].y + 1
+				});
+				break;
+			case "up":
+				this.bodyArr.push({
+					x:snake.bodyArr[0].x + 1,
+					y:snake.bodyArr[0].y
+				});
+				break;
+			case "down":
+				this.bodyArr.push({
+					x:snake.bodyArr[0].x - 1,
+					y:snake.bodyArr[0].y
+				});
+				break;
+			default:
+			}
+			num +=1 ;
+			this.score.innerHTML = num;
+			this.oOverscore.innerHTML = num;
+			food.change(); 
+		}
+	}
+	Snake.prototype.over = function(){
+		clearInterval(timer);
+		
+		this.oOver.style.display = "block";
+
+	}
+	function Food(){
+		this.change(); 
+	}
+	Food.prototype.render = function(){
+		map.mapArr[this.Foodx][this.Foody].className = "foodc";
+	}
+	Food.prototype.change = function(){
+		this.Foodx = parseInt(Math.random()*map.max);
+		this.Foody = parseInt(Math.random()*map.max);
+		for (var i = 0; i < snake.bodyArr.length; i++){
+			if(snake.bodyArr[i].x == this.Foodx && snake.bodyArr[i].y == this.Foody){
+				this.change();
+			}
+		}
+	}
+
+	var oAgain = document.getElementById('again');
+	var oStart = document.getElementById('start');
+	
+	oAgain.onclick =function(){
+		window.location.reload();
+	}
+	var map = new Map();
+	oStart.onclick =function(){
+		var oSpeed = document.getElementById('speed'); 
+	var index = oSpeed.selectedIndex; 
+	var sp = oSpeed.options[index].text;
+		window.snake = new Snake();
+		window.food = new Food();
+		window.timer=setInterval(function(){
+		snake.move();
+		snake.render();
+		food.render();
+		},sp)
+	}
+</script>
+</html>

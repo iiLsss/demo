@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3D转换</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background: #f7f7f7;
+            -background: rgba(2, 2, 2, 1)
+        }
+        
+        .main {
+            width: 1000px;
+            height: 500px;
+            margin: 100px auto;
+            position: relative;
+            perspective: 6000px;
+        }
+        
+        .main ul {
+            width: 400px;
+            height: 210px;
+            margin: 0 auto;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+        
+        .main li {
+            list-style: none;
+            position: absolute;
+            width: 400px;
+            height: 210px;
+        }
+        
+        img {
+            width: 400px;
+            height: 210px;
+        }
+        
+        .main li:nth-child(1) {
+            transform: translateZ(300PX)
+        }
+        
+        .main li:nth-child(2) {
+            transform: rotateY(60deg) translateZ(300PX)
+        }
+        
+        .main li:nth-child(3) {
+            transform: rotateY(120deg) translateZ(300PX)
+        }
+        
+        .main li:nth-child(4) {
+            z-index: 10;
+            transform: rotateY(180deg) translateZ(300PX)
+        }
+        
+        .main li:nth-child(5) {
+            transform: rotateY(240deg) translateZ(300PX)
+        }
+        
+        .main li:nth-child(6) {
+            transform: rotateY(300deg) translateZ(300PX)
+        }
+        
+        .main span {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            font-size: 30px;
+            font-weight: 600;
+            background: #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .left {
+            bottom: 0;
+            left: 400px;
+        }
+        
+        .right {
+            bottom: 0;
+            left: 450px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <ul>
+            <li><img src="img/lb1.jpg" alt=""></li>
+            <li><img src="img/lb2.jpg" alt=""></li>
+            <li><img src="img/lb3.jpg" alt=""></li>
+            <li><img src="img/lb4.jpg" alt=""></li>
+            <li><img src="img/lb5.jpg" alt=""></li>
+            <li><img src="img/lb6.jpg" alt=""></li>
+        </ul>
+        <span class="left"><</span>
+        <span class="right">></span>
+    </div>
+</body>
+<script src="jquery.js"></script>
+<script>
+    var oLeft = $(".left");
+    var oRight = $(".right");
+    var oUl = $("ul");
+
+    var oLi = $("li");
+    console.log(oLi)
+    var a = 1;
+    var b = 3;
+    var c = 5;
+    var l = 0;
+    var r = 0;
+    oLi.eq(a).hide();
+    oLi.eq(b).hide();
+    oLi.eq(c).hide();
+    oLeft.click(function() {
+        oLi.each(function(index) {
+            oLi.eq(index).show();
+        })
+        l += 60;
+        a -= 1;
+        b -= 1;
+        c -= 1;
+        a < 0 ? a = 5 : a;
+        b < 0 ? b = 5 : b;
+        c < 0 ? c = 5 : c;
+        oUl.css("transform", "rotateY(" + l + "deg) ");
+        oLi.eq(a).hide();
+        oLi.eq(b).hide();
+        oLi.eq(c).hide();
+
+    })
+    oRight.click(function() {
+        r -= 60;
+        oLi.each(function(index) {
+            oLi.eq(index).show();
+        })
+        l += 60;
+        a += 1;
+        b += 1;
+        c += 1;
+        a == 6 ? a = 0 : a;
+        b == 6 ? b = 0 : b;
+        c == 6 ? c = 0 : c;
+        oUl.css("transform", "rotateY(" + r + "deg) ");
+        oLi.eq(a).hide();
+        oLi.eq(b).hide();
+        oLi.eq(c).hide();
+    })
+</script>
+
+</html>

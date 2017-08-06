@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #draggable {
+            width: 200px;
+            height: 20px;
+            text-align: center;
+            background: white;
+        }
+        
+        .dropzone {
+            width: 200px;
+            height: 20px;
+            background: blueviolet;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dropzone">
+        <div id="draggable" draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)">
+            This div is draggable
+        </div>
+    </div>
+    <div class="dropzone"></div>
+    <div class="dropzone"></div>
+    <div class="dropzone"></div>
+</body>
+<script>
+    var dragged;
+    var box = document.querySelector("#draggable");
+    var boxV = document.querySelectorAll(".dropzone");
+    console.log(boxV)
+        // 正在拖放元素或文本选区
+    box.addEventListener("drag", function(event) {});
+    //用户开始拖动HTML元素或选中的文本
+    box.addEventListener("dragstart", function() {
+        dragged = event.target;
+        event.target.style.opacity = 0.5;
+    });
+    //拖放操作结束
+    box.addEventListener("dragend", function(event) {
+        event.target.style.opacity = "";
+    });
+    for (var i = 0; i < boxV.length; i++) {
+
+        //被拖动的元素或文本选区正在有效释放目标上被拖动
+        boxV[i].addEventListener("dragover", function(ev) {
+            ev.preventDefault(); //阻止默认事件
+        });
+        //被拖动的元素或文本选区移入有效释放目标区
+        boxV[i].addEventListener("dragenter", function(ev) {
+            if (event.target.className == "dropzone") {
+                event.target.style.background = "purple";
+            }
+        });
+        //被拖动的元素或文本选区移除有效释放目标区
+        boxV[i].addEventListener("dragleave", function(ev) {
+            if (event.target.className == "dropzone") {
+                event.target.style.background = "";
+            }
+        });
+        //元素在有效释放目标区释放
+        boxV[i].addEventListener("drop", function(ev) {
+            ev.preventDefault(); //阻止默认事件
+            if (event.target.className == "dropzone") {
+                event.target.style.background = "";
+                dragged.parentNode.removeChild(dragged);
+                event.target.appendChild(dragged);
+            }
+        })
+    }
+</script>
+
+</html>

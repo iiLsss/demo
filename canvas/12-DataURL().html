@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DataURL()</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .word {
+            padding: 100px;
+        }
+        
+        .word p {
+            height: 30px;
+        }
+        
+        .picture {
+            display: none;
+        }
+        
+        canvas {
+            /*background: url("11.jpeg") no-repeat;*/
+            /*background-size: cover;*/
+        }
+    </style>
+</head>
+
+<body>
+    <div class="word">
+        <p><input type="text" name="user" placeholder="请输入姓名"></p>
+        <p><button type="">提交</button></p>
+    </div>
+    <div class="picture">
+        <canvas id="canvas" width="640" height="734"></canvas>
+    </div>
+</body>
+<script>
+    var oInp = document.getElementsByTagName("input")[0];
+    var oBtn = document.getElementsByTagName("button")[0];
+    var oW = document.getElementsByClassName("word")[0];
+    var oP = document.getElementsByClassName("picture")[0];
+
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext('2d')
+    oBtn.onclick = function() {
+        oW.style.display = "none";
+        oP.style.display = "block";
+        var image = new Image();
+        var a = oInp.value;
+        image.src = "11.jpeg";
+        image.onload = function() {
+            ctx.drawImage(image, 0, 0);
+            ctx.font = "40px 微软雅黑";
+            ctx.textAlign = "right";
+            ctx.fillText(a, 260, 220);
+            var dataURL = canvas.toDataURL();
+            // console.log(dataURL)
+            // window.location.href = dataURL
+        }
+
+    }
+</script>
+
+</html>

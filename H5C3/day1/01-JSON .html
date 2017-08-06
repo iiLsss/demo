@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+</body>
+<script>
+    // eval(): 函数会将传入的字符串当做JavaScript代码进行执行。
+    /*    var str = "function foo(){alert(1111)}";
+        eval(str);
+        foo();*/
+
+    /*    
+        var str1 = '{"name":"lsss"}';
+        var dataObj = eval("(" + str1 + ")");
+        console.log(dataObj)
+
+        var jsonObj = JSON.parse(str1);
+        console.log(jsonObj)
+    */
+    // JSON.parse()
+    /*    
+        JSON.parse('{}'); // {}
+        JSON.parse('true'); // true
+        JSON.parse('"foo"'); // "foo"
+        JSON.parse('[1, 5, "false"]'); // [1, 5, "false"]
+        JSON.parse('null'); // null
+        var str = '{"name":"lsss"}';
+        console.log(JSON.parse(str))
+    */
+    // JSON.stringify()
+    /*    var lsss = {
+            name: "lsss",
+            age: 18,
+        }
+        console.log(lsss)
+
+        var str = JSON.stringify(lsss)
+        console.log(str) //{"name":"lsss","age":18}
+    */
+    function replacer(key, value) {
+        console.log(typeof value)
+        if (typeof value === "string") {
+            return undefined
+        }
+        return value;
+    }
+
+    var foo = {
+        foundation: "Mozilla1",
+        model: "box",
+        week: 45,
+        transport: "car",
+        month: 7
+    }
+    var jsonString = JSON.stringify(foo, replacer);
+    console.log(jsonString) //{"week":45,"month":7}
+
+    JSON.stringify({}); // '{}'
+    JSON.stringify(true); // 'true'
+    JSON.stringify("foo"); // '"foo"'
+    JSON.stringify([1, "false", false]); // '[1,"false",false]'
+    JSON.stringify({
+        x: 5
+    }); // '{"x":5}'
+    JSON.stringify({
+        x: 5,
+        y: 6
+    });
+    // "{"x":5,"y":6}"   
+
+    JSON.stringify([new Number(1), new String("false"), new Boolean(false)]);
+    // '[1,"false",false]'
+
+    JSON.stringify({
+        x: undefined,
+        y: Object,
+        z: Symbol("")
+    });
+    // '{}'
+
+    JSON.stringify([undefined, Object, Symbol("")]);
+    // '[null,null,null]' 
+
+    JSON.stringify({
+        [Symbol("foo")]: "foo"
+    });
+    // '{}'
+
+    JSON.stringify({
+        [Symbol.for("foo")]: "foo"
+    }, [Symbol.for("foo")]);
+    // '{}'
+
+    JSON.stringify({
+            [Symbol.for("foo")]: "foo"
+        },
+        function(k, v) {
+            if (typeof k === "symbol") {
+                return "a symbol";
+            }
+        }
+    );
+    // 不可枚举的属性默认会被忽略：
+    JSON.stringify(
+        Object.create(
+            null, {
+                x: {
+                    value: 'x',
+                    enumerable: false
+                },
+                y: {
+                    value: 'y',
+                    enumerable: true
+                }
+            }
+        )
+    );
+
+    // "{"y":"y"}"
+</script>
+
+</html>

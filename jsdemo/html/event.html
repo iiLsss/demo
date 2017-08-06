@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;}
+        div{
+            margin:0 auto;}
+        .box1{
+            width: 600px;
+            height: 600px;
+            background: #f00;}
+        .box2{
+            width: 400px;
+            height: 400px;
+            background-color: #0f0;}
+        .box3{
+            width: 200px;
+            height: 200px;
+            background-color: #00f;}
+    </style>
+</head>
+<body>
+    <div class="box1" onclick="fun1()">
+        <div class="box2" >
+            <div class="box3">
+                冒泡事件
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+    function fun() {
+        alert(this);
+    }
+
+    function fun1(){
+        var src=event.srcElement||event.target;
+        alert(src.className);
+    }
+</script>
+</html>

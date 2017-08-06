@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>放大镜</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #small{
+            width: 170px;
+            height: 170px;
+            background: url(../images/170.jpg) no-repeat center;
+            border:1px solid #ccc;
+            position: absolute;
+        }
+        #big{
+            width: 170px;
+            height: 170px;
+            background: url(../images/400.jpg) no-repeat ;
+            position: absolute;
+            top: 0;
+            left:200px;
+            border:1px solid #ccc;
+            display:none;
+        }
+        #glass{
+            width: 80px;
+            height: 80px;
+            background: rgba(56, 76, 133, 0.5);
+            display:none;
+            position:absolute;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var oGlass=document.getElementById("glass");
+            var oBig=document.getElementById("big");
+            var oSmall=document.getElementById("small");
+            //滑入出现 消失
+            oSmall.onmouseover=function(){
+                oGlass.style.display="block";
+                oBig.style.display="block";
+
+            };
+            oSmall.onmouseout=function(){
+                oGlass.style.display="";
+                oBig.style.display="";
+            };
+
+            oSmall.onmousemove=function(){
+                var e=event||arguments[0];
+//                console.log(e);
+                var x= e.clientX-oSmall.offsetLeft-oGlass.offsetWidth/2;
+                //console.log(e.clientX);
+                var y= e.clientY-oSmall.offsetTop-oGlass.offsetHeight/2;
+
+                //边界问题
+                if(y<=0){
+                    oGlass.style.top=0+"px"
+                }else if(y>=oSmall.offsetHeight-oGlass.offsetHeight){
+                    oGlass.style.top=oSmall.offsetHeight-oGlass.offsetHeight+"px";
+                }else{
+                    oGlass.style.top=y+"px"
+                }
+
+                if(x<=0){
+                    oGlass.style.left=0+"px"
+                }else if(x>=oSmall.offsetHeight-oGlass.offsetHeight){
+                    oGlass.style.left=oSmall.offsetWidth-oGlass.offsetWidth+"px";
+                }else{
+                    oGlass.style.left=x+"px"
+                }
+
+                //移动 得到移动距离比例
+                var rw=400/170;
+                var rh=400/170;
+                oBig.style.backgroundPosition=rw*(-oGlass.offsetLeft)+"px"+" "+rh*(-oGlass.offsetTop)+"px"
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <div id="small">
+        <div id="glass"></div>
+    </div>
+    <div id="big">
+
+    </div>
+</body>
+</html>

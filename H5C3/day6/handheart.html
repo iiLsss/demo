@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0.0.0.0</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+
+<body>
+    <div class="line">
+    </div>
+    <div class="stage">
+        <div class="screen s0">
+            <div class="anim d1">
+                <div class="text"></div>
+                <div class="elem leafSmall"></div>
+                <div class="elem leafBig"></div>
+            </div>
+        </div>
+        <div class="screen s1">
+            <div class="anim d2 ">
+                <div class="text"></div>
+                <div class="elem circular"></div>
+                <div class="elem triangle"></div>
+                <div class="elem square"></div>
+            </div>
+        </div>
+        <div class="screen s2">
+            <div class="anim d3">
+                <div class="text"></div>
+                <div class="elem bulb"></div>
+                <div class="elem light"></div>
+            </div>
+        </div>
+        <div class="screen s3">
+            <div class="anim d4">
+                <div class="text"></div>
+                <div class="elem plane"></div>
+                <div class="elem l1"></div>
+                <div class="elem l2"></div>
+                <div class="elem l3"></div>
+                <div class="elem l4"></div>
+            </div>
+        </div>
+    </div>
+    <div class="indexs">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</body>
+<script src="js/jquery.js"></script>
+<script src="js/jq.mousewheel.js"></script>
+<script>
+    var oScn = $(".screen");
+    var oBtn = $(".indexs>span");
+    var i = 0;
+    oScn.eq(i).show();
+    oBtn.eq(i).addClass("current");
+    var lock = true;
+
+    oScn.mousewheel(function(ev, delta) {
+        if (!lock) return
+        console.log(delta);
+        if (delta < 0) {
+            i++;
+            i == 4 ? i = 0 : i;
+            oBtn.eq(i).addClass("current").siblings().removeClass("current");
+            oScn.eq(i).show().siblings().hide();
+
+        } else {
+            i--;
+            i < 0 ? i = 3 : i;
+            oBtn.eq(i).addClass("current").siblings().removeClass("current");
+            oScn.eq(i).show().siblings().hide();
+
+        }
+        lock = false;
+
+        setTimeout(function() {
+            lock = true;
+        }, 1000)
+    })
+</script>
+
+</html>

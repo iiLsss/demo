@@ -1,0 +1,65 @@
+.main {
+    width: 1000px;
+    height: 125px;
+    background: url(../img/bg_02.jpg) no-repeat center;
+}
+
+.main li {
+    list-style: none;
+    float: left;
+    width: 107px;
+    height: 107px;
+    box-sizing: border-box;
+    padding: 20px 0 0 0;
+    text-align: center;
+    margin: 0 47px 0 46px;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 1s ease-in-out 0s;
+}
+
+.main li:nth-child(1) {
+    background: url(../img/a_1.png) no-repeat center;
+}
+
+.main li:nth-child(2) {
+    background: url(../img/a_2.png) no-repeat center;
+}
+
+.main li:nth-child(3) {
+    background: url(../img/a_3.png) no-repeat center;
+}
+
+.main li:nth-child(4) {
+    background: url(../img/a_4.png) no-repeat center;
+}
+
+.main li:nth-child(5) {
+    background: url(../img/a_5.png) no-repeat center;
+}
+
+.main li:nth-child(1):hover {
+    background: url(../img/a_1_h1.png) no-repeat center;
+    transform: rotate(360deg)
+}
+
+.main li:nth-child(2):hover {
+    background: url(../img/a_2_h1.png) no-repeat center;
+    transform: rotate(360deg)
+}
+
+.main li:nth-child(3):hover {
+    background: url(../img/a_3_h1.png) no-repeat center;
+    transform: rotate(360deg)
+}
+
+.main li:nth-child(4):hover {
+    background: url(../img/a_4_h1.png) no-repeat center;
+    transform: rotate(360deg)
+}
+
+.main li:nth-child(5):hover {
+    background: url(../img/a_5_h1.png) no-repeat center;
+    transform: rotate(360deg)
+}

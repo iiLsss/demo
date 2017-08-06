@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>跟随方块</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 20px;
+            height: 20px;
+            background: pink;
+            position:absolute;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var oDiv=document.getElementsByTagName("div");
+            document.onmousemove=function(){
+                var num=0;                                      // 利用计时器 每个小方块的下标 依次运动
+                var e=event||arguments[0];                      //获取事件
+                console.log(e);
+                var time=setInterval(function(){               // 计时器
+                    num==oDiv.length-1?clearInterval(time):num;   // num=小方块个数
+                    console.log(num);
+                    oDiv[num].style.left= e.clientX+"px";      // 当前小方块 left   =跟随鼠标移动坐标
+                    oDiv[num].style.top= e.clientY+"px";       // 当前小方块 top    =跟随鼠标移动坐标
+                    num++;                                    // 每个小方块 依次运动
+                },20);
+            }
+        }
+    </script>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+</html>

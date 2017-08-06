@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>鼠标跟随小球</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            width: 100%;
+            height: 100%;
+        }
+        
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas">SORRY ,I don't support</canvas>
+</body>
+<script src="https://cdn.bootcss.com/underscore.js/1.8.3/underscore-min.js"></script>
+<script src="jquery.js"></script>
+<script>
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    // canvas 屏幕自适应
+    $(window).resize(resizeCanvas);
+
+    function resizeCanvas() {
+        $("canvas").attr("width", $(window).get(0).innerWidth);
+        $("canvas").attr("height", $(window).get(0).innerHeight);
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    };
+    resizeCanvas();
+    var color = ["#FF6666", "#99FFFF", "#FF3333", "#66CCFF", "#FF6699", "#54FF9F", "#D1EEEE", "#EEAEEE", "#FFFF33"]
+    var ballArr = [];
+
+    function Getball(x, y, r) {
+        this.x = x;
+        this.y = y;
+        this.r = r;
+        this.color = _.sample(color);
+        this.deltaX = Math.random() * 8 - 4;
+        this.deltaY = Math.random() * 8 - 4;
+        ballArr.push(this);
+    }
+    Getball.prototype.render = function() {
+        if (this.r <= 0) {
+            ballArr = _.without(ballArr, this);
+            return;
+        }
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+    }
+    Getball.prototype.updata = function() {
+        this.x += this.deltaX;
+        this.y += this.deltaY;
+        this.r -= 0.2;
+    }
+    canvas.onmousemove = function(ev) {
+        // console.log(ev)
+        new Getball(ev.offsetX, ev.offsetY, 10);
+    }
+    setInterval(function() {
+        // ctx.clearRect(0, 0, canvas.width, canvas.height)
+        _.each(ballArr, function(i) {
+            i.render();
+            i.updata();
+        })
+    }, 100)
+</script>
+
+</html>

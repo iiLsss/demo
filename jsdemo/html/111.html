@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;list-style: none;}
+        body{background: url(img/beijing.jpg) no-repeat;overflow: hidden;}
+        #ballon{
+            width: 81px;
+            height: 119px;
+            background: url(img/ballon.png) no-repeat;
+            position: absolute;top: 500px;
+        }
+        #score{width: 120px;height: 60px;background-color:rgba(33, 150, 243, 0.63);position: absolute;
+            top: 120px;font-size: 30px;text-align: center;outline: none;border-radius: 20%;border: none;
+            color: white;}
+        #daojishi{width: 120px;height: 60px;background-color:rgba(244, 67, 54, 0.65);position: absolute;
+            top: 30px;font-size: 24px;text-align: center;outline: none;border-radius: 20%;border: none;
+            color: yellow;}
+        #zhegai{display: none;
+            width: 1366px;height: 100%;background-color:rgba(156, 39, 176, 0.46); position: absolute;z-index:2;}
+        #fen2{width: 500px;height: 300px;border-radius: 20%;background-color: rgba(156, 39, 176, 0.62);
+            position: absolute;left:30%;top: 30%;text-align: center;}
+        h1{margin-top: 50px;}
+        #zl{margin-top:30px;width: 100px;height: 50px;background-color:#00BCD4;outline: none;border: none;
+            border-radius: 10%;font-size: 19px;font-weight: bold;}
+        #miao {
+            width: 1100px;
+            height: 720px;
+            background:url(img/qiang.png) no-repeat;
+            background-size: 100% 100%;
+            position: absolute;
+            z-index: 2;
+            top: 100px;
+        }
+    </style>
+</head>
+<body>
+<div id="miao">
+
+</div>
+<div id="zhegai">
+    <div id="fen2">
+        <h1 id="fen3"></h1>
+        <h1>小样^O^ 不服再来啊</h1>
+        <a href=""><input type="button"id="zl" value="重新开始" /></a>
+    </div>
+</div>
+<input id="score" type="text" value="0" readonly="readonly"/>
+<input id="daojishi" type="text" value="时间：60s" readonly="readonly"/>
+<audio id="sui" src="b.wav"></audio>
+<audio id="qiang" src="c.wav"></audio>
+</body>
+<script type="text/javascript">
+    function Qiu(){
+        this.fenshu=document.getElementById("score");
+        this.qiang=document.getElementById("qiang");
+        this.sui=document.getElementById("sui");
+        this.top=500;
+        this.left=Math.random()*1300;
+        this.score=parseInt(Math.random() * 11) + 1;
+        this.hezi();
+        this.fly();
+        this.dian();
+    }
+    Qiu.prototype.hezi=function(){
+        this.dom=document.createElement("div");
+        document.body.appendChild(this.dom);
+        this.dom.id="ballon";
+        this.dom.style.left = this.left + "px";
+        this.x = -(this.score-1) % 4 * 96;
+        this.y = -parseInt(this.score*2/9) * 120;
+        this.dom.style.backgroundPosition = this.x + "px " + this.y + "px";
+    }
+    Qiu.prototype.fly=function(){
+        var self = this;
+        this.timer = setInterval(function(){
+            if(self.score>8){self.top-=8}
+            else{self.top-=self.score};
+            self.dom.style.top = self.top + "px";
+
+        },20)
+    }
+    Qiu.prototype.dian=function(){
+        var self=this;
+        self.dom.onclick=function(){
+            document.body.removeChild(self.dom);
+            self.qiang.play();
+            self.sui.play();
+            if(self.score<9) {self.fenshu.value=parseInt(self.score)+parseInt(self.fenshu.value)};
+            if(self.score==9){self.fenshu.value=(parseInt(self.fenshu.value))*2};
+            if(self.score==10){self.fenshu.value=(parseInt(self.fenshu.value))/2};
+            if(self.score==11){self.fenshu.value=0};
+            if(self.score==12){self.fenshu.value+=0};
+        }
+    }
+    var daoji=document.getElementById("daojishi");
+    var zhegai=document.getElementById("zhegai");
+    var fen3=document.getElementById("fen3");
+    var fenshu=document.getElementById("score");
+    var shijian=60;
+    var gg=setInterval(function dao(){
+        shijian--;
+        daoji.value="时间："+shijian+"s";
+        if(shijian<=0){
+            zhegai.style.display="block";
+            fen3.innerHTML="本轮得分："+fenshu.value;
+            clearInterval(jj);
+            clearInterval(gg);
+        }
+    },1000)
+    var jj=setInterval(function(){
+        new	Qiu();
+    },1000)
+    window.onmousemove = function() {
+        var miao = document.getElementById("miao");
+        var e = event || arguments[0];
+        var scrollleft = document.documentElement.scrollLeft || document.body.scrollLeft;
+        var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+        miao.style.left = e.clientX + scrollleft + (10) + "px";
+        miao.style.top = e.clientY + scrolltop + (-80) + "px";
+        return false;
+    }
+
+</script>
+</html>

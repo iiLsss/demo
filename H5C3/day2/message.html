@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>留言板</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .main {
+            width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .title {
+            width: 100%;
+            height: 100px;
+            line-height: 100px;
+            background: orange;
+            text-align: center;
+        }
+        
+        .content {
+            width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        #text {
+            width: 500px;
+            height: 150px;
+            font-size: 20px;
+            outline: none;
+            resize: none;
+        }
+        
+        .submit {
+            width: 100px;
+            height: 35px;
+        }
+        
+        ul {
+            width: 500px;
+            margin: 0 auto;
+        }
+        
+        li {
+            list-style: none;
+            width: 500px;
+            height: 100px;
+            border: 2px dashed #ccc;
+            position: relative;
+            margin-top: 10px;
+        }
+        
+        .del {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="title">留言板</div>
+        <div class="content">
+            <textarea rows="" cols="" id="text"></textarea>
+            <button type="" class="submit">提交</button>
+        </div>
+        <ul>
+            <li>
+                <p>id</p>
+                <p>content</p>
+                <button class="del">删除</button>
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+    //创建数据库           数据库名称 版本号 描述文本  数据库大小
+    var db = openDatabase('llll', '1.0', 'enen', 50 * 1024 * 1024)
+    db.transaction(function(tx) {
+        tx.executeSql('CREATE TABLE IF NOT EXISTS MESSAGE1 (id unique , content , time)')
+    });
+
+    //读取数据库内容
+    db.transaction(function(tx) {
+        tx.executeSql('SELECT * FROM MESSAGE1', [], function(tx, results) {
+            var len = results.rows.length,
+                i;
+            for (var i = 0; i < len; i++) {
+                msg =
+                    '<li>\
+                        <p>' + results.rows.item(i).id + '</p>\
+                        <p>' + results.rows.item(i).content + '</p>\
+                        <button class="del">删除</button>\
+                    </li>';
+                document.querySelector("ul").innerHTML += msg;
+            }
+            //添加删除功能
+            var oDel = document.getElementsByClassName("del");
+            for (var j = 0; j < oDel.length; j++) {
+                oDel[j].onclick = function() {
+                    var a = Number(this.parentElement.firstElementChild.innerHTML);
+                    db.transaction(function(tx) {
+                        tx.executeSql('DELETE FROM MESSAGE1 WHERE id=?', [a]); //number 类型
+                    });
+                    console.log(this.parentElement);
+                    document.querySelector("ul").removeChild(this.parentElement);
+                }
+            }
+        })
+    });
+
+
+    var oSub = document.querySelector('.submit');
+    var oTex = document.querySelector('#text');
+    var i = 0;
+    var msg;
+    //保存数据到数据库
+    oSub.onclick = function() {
+        // var time = new Date();
+        db.transaction(function(tx) {
+            tx.executeSql('INSERT INTO MESSAGE1 (id, content) VALUES (?, ? )', [i, oTex.value])
+        });
+        var html =
+            '<li>\
+                <p>' + i + '</p>\
+                <p>' + oTex.value + '</p>\
+                <button class="del">删除</button>\
+            </li>';
+        document.querySelector("ul").innerHTML += html;
+        i++;
+        setTimeout(function() {
+            oTex.value = "";
+        }, 500);
+    };
+
+    //无法实现
+    /*    window.onunload = function() {
+            db.transaction(function(tx) {
+                tx.executeSql('DELETE FROM MESSAGE1 ');
+            });
+        }*/
+</script>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>rotate</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background: rgba(2, 2, 2, 1);
+        }
+        
+        .header,
+        .Dlb {
+            width: 1080px;
+            height: 700px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="css/3Dlb1.css">
+    <link rel="stylesheet" type="text/css" href="css/header.css">
+</head>
+
+<body>
+    <div class="Dlb">
+        <div class="slider">
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script src="jquery.js"></script>
+<script>
+    var oBox = $(".slider");
+    var nowRotateX = 0;
+    var nowRotateY = 0;
+
+    $(document).mousedown(function(ev) {
+        startX = ev.clientX;
+        startY = ev.clientY;
+
+        $(document).mousemove(function(ev) {
+            var deltaX = ev.clientX - startX;
+            var deltaY = ev.clientY - startY;
+
+            nowRotateX += -deltaY / 10;
+            nowRotateY += deltaX / 10;
+
+            oBox.css("transform", "rotateX(" + nowRotateX + "deg) rotateY(" + nowRotateY + "deg)");
+            return false;
+        })
+    })
+
+
+    $(document).mouseup(function() {
+        $(document).off('mousemove');
+        oBox.css("transition", "all 1s ease 0s");
+    })
+</script>
+
+</html>

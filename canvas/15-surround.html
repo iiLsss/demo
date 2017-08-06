@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<script src="https://cdn.bootcss.com/konva/1.6.3/konva.min.js"></script>
+<script src="https://cdn.bootcss.com/underscore.js/1.8.3/underscore-min.js"></script>
+
+<body>
+    <div id="container">
+
+    </div>
+</body>
+<script>
+    var stage = new Konva.Stage({
+        container: 'container',
+        width: window.innerWidth,
+        height: window.innerHeight
+    });
+
+    var layer = new Konva.Layer();
+    // 中间大球
+    var circleIn = new Konva.Circle({
+        x: stage.getWidth() / 2,
+        y: stage.getHeight() / 2,
+        radius: 70,
+        fill: '#FF6666'
+    })
+
+    var complexText = new Konva.Text({
+        x: stage.getWidth() / 2 - 45,
+        y: stage.getHeight() / 2 - 15,
+        text: '嗯嗯嗯',
+        fontSize: 30,
+        fontFamily: 'Calibri',
+        fill: '#555',
+        align: "center"
+    });
+
+    // dashed line
+    for (var i = 0; i < 60; i++) {
+        var arc1 = new Konva.Arc({
+            x: stage.getWidth() / 2,
+            y: stage.getHeight() / 2,
+            innerRadius: 140,
+            outerRadius: 140,
+            angle: 3,
+            stroke: 'black',
+            strokeWidth: 2,
+            rotation: -i * 6
+        });
+        layer.add(arc1)
+    }
+    // 中圈球1
+    var circleM1 = new Konva.Circle({
+        x: stage.getWidth() / 2,
+        y: stage.getHeight() / 2,
+        radius: 30,
+        fill: '#99FFFF',
+        offset: { //偏离中心点和旋转点
+            x: -140,
+            y: 0
+        }
+    });
+    // 中圈球2
+    var circleM2 = new Konva.Circle({
+        x: stage.getWidth() / 2,
+        y: stage.getHeight() / 2,
+        radius: 30,
+        fill: '#66CCFF',
+        offset: { //偏离中心点和旋转点
+            x: 140,
+            y: 0
+        }
+    });
+    var complexText2 = new Konva.Text({
+        x: stage.getWidth() / 2 - 15,
+        y: stage.getHeight() / 2 - 5,
+        text: '嘿',
+        fontSize: 30,
+        fontFamily: 'Calibri',
+        fill: '#555',
+        align: "center",
+        offset: { //偏离中心点和旋转点
+            x: 140,
+            y: 0
+        }
+    });
+    var complexText3 = new Konva.Text({
+        x: stage.getWidth() / 2 - 15,
+        y: stage.getHeight() / 2 - 5,
+        text: '嘻',
+        fontSize: 30,
+        fontFamily: 'Calibri',
+        fill: '#555',
+        align: "center",
+        offset: { //偏离中心点和旋转点
+            x: -140,
+            y: 0
+        }
+    });
+
+
+    // dashed line
+    for (var i = 0; i < 60; i++) {
+        var arc2 = new Konva.Arc({
+            x: stage.getWidth() / 2,
+            y: stage.getHeight() / 2,
+            innerRadius: 280,
+            outerRadius: 280,
+            angle: 3,
+            stroke: 'black',
+            strokeWidth: 2,
+            rotation: -i * 6
+        });
+        layer.add(arc2)
+    }
+    // 外圈球
+    var circleOut = new Konva.Circle({
+        x: stage.getWidth() / 2,
+        y: stage.getHeight() / 2,
+        radius: 35,
+        fill: '#FFFF33',
+        offset: { //偏离中心点和旋转点
+            x: 280,
+            y: 0
+        }
+    });
+
+
+    var angularSpeed = 90; //旋转速度
+    var angularSpeed1 = -80
+    var anim = new Konva.Animation(function(frame) {
+        var angleDiff = frame.timeDiff * angularSpeed / 1000;
+        var angleDiff1 = frame.timeDiff * angularSpeed1 / 1000;
+        circleM1.rotate(angleDiff);
+        // complexText2.rotate(angleDiff);
+
+        circleM2.rotate(angleDiff);
+        // complexText3.rotate(angleDiff);
+
+        circleOut.rotate(angleDiff1);
+    }, layer);
+    anim.start();
+    layer.add(circleOut);
+    layer.add(circleIn);
+    layer.add(circleM1);
+    layer.add(circleM2);
+    layer.add(complexText)
+        // layer.add(complexText2)
+        // layer.add(complexText3)
+
+
+    stage.add(layer)
+</script>
+
+</html>

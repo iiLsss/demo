@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>刮刮乐</title>
+    <style>
+        div {
+            width: 300px;
+            height: 500px;
+            border: 1px solid #000;
+            text-align: center;
+            padding-top: 250px;
+            box-sizing: border-box;
+        }
+        
+        canvas {
+            background: url(text.png);
+        }
+        
+        canvas::before {
+            content: "再来一瓶";
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <canvas id="canvas" width="200" height="100"></canvas>
+    </div>
+</body>
+<script>
+    var canvas = document.getElementById("canvas")
+    var ctx = canvas.getContext("2d");
+    ctx.fillStyle = "orange";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    canvas.onmousedown = function(ev) {
+        console.log(ev)
+
+        ctx.globalCompositeOperation = "destination-out";
+        ctx.fillStyle = "white";
+        ctx.fillRect(ev.offsetX - 5, ev.offsetY - 5, 10, 10);
+
+        canvas.onmousemove = function(e) {
+            ctx.fillRect(e.offsetX - 5, e.offsetY - 5, 10, 10);
+        }
+    }
+    document.onmouseup = function() {
+        canvas.onmousemove = null
+    }
+</script>
+
+</html>

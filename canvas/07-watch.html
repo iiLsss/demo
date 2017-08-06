@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="1000" height="600"></canvas>
+</body>
+<script src="https://cdn.bootcss.com/underscore.js/1.8.3/underscore-min.js"></script>
+<script src="jquery.js"></script>
+<script>
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    clock(); //打开页面 显示当时时钟 而不是 00:00:00
+    setInterval(clock, 1000)
+
+
+    function clock() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.save(); //保存当前环境的状态
+        ctx.translate(500, 300); //重新映射画布上的 (0,0) 位置 (500, 300)
+        ctx.rotate(-Math.PI / 2); //表盘旋转90
+
+        var date = new Date();
+        var sec = date.getSeconds();
+        var min = date.getMinutes();
+        var hour = date.getHours();
+        // console.log(hour + ":" + min + ":" + sec);
+        // 表盘
+        ctx.beginPath();
+        ctx.arc(0, 0, 100, 0, 2 * Math.PI);
+        ctx.strokeStyle = "#ccc"; //笔触颜色
+        ctx.lineWidth = "10";
+        ctx.stroke(); //闭合笔触
+        ctx.closePath();
+
+
+        //中心
+        ctx.beginPath();
+        ctx.arc(0, 0, 2, 0, 2 * Math.PI);
+        ctx.strokeStyle = "#ccc"; //笔触颜色
+        ctx.stroke(); //闭合笔触
+        ctx.closePath();
+
+        // 分钟刻度
+        for (var i = 0; i < 60; i++) { //画12个刻度线			
+            ctx.beginPath();
+            ctx.strokeStyle = "#f00"; //笔触颜色
+            ctx.lineWidth = 5; //笔触宽度
+            ctx.moveTo(95, 0); //线条起始
+            ctx.lineTo(100, 0); //线条结束
+            ctx.stroke(); //闭合笔触
+            ctx.rotate(Math.PI / 30); //每个6deg画一个时钟刻度线
+            ctx.closePath();
+        }
+        //刻度 
+        for (var i = 0; i < 12; i++) {
+
+            ctx.beginPath();
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 5;
+            ctx.moveTo(0, 90);
+            ctx.lineTo(0, 100);
+            ctx.rotate(Math.PI / 6)
+            ctx.stroke(); //闭合笔触
+            ctx.closePath();
+        }
+        //画时针
+        hour = hour > 12 ? hour - 12 : hour;
+        ctx.beginPath();
+        ctx.save();
+        ctx.rotate(Math.PI / 6 * hour + Math.PI / 6 * min / 60 + Math.PI / 6 * sec / 3600);
+        ctx.strokeStyle = "yellowgreen";
+        ctx.lineWidth = 4;
+        ctx.moveTo(-20, 0);
+        ctx.lineTo(50, 0);
+        ctx.stroke();
+        ctx.restore();
+        ctx.closePath();
+
+        //画分针
+        ctx.beginPath();
+        ctx.save();
+        ctx.rotate(Math.PI / 30 * min + Math.PI / 30 * sec / 60);
+        ctx.strokeStyle = "springgreen";
+        ctx.lineWidth = 3;
+        ctx.moveTo(-30, 0);
+        ctx.lineTo(70, 0);
+        ctx.stroke();
+        ctx.restore();
+        ctx.closePath();
+
+
+        //画秒针
+        ctx.beginPath();
+        ctx.save(); //保存当前环境的状态
+        ctx.rotate(Math.PI / 30 * sec);
+        ctx.strokeStyle = "red";
+        ctx.lineWidth = 2;
+        ctx.moveTo(-40, 0);
+        ctx.lineTo(90, 0);
+        ctx.stroke();
+        ctx.restore();
+        ctx.closePath(); //创建从当前点回到起始点的路径
+        ctx.restore(); //返回之前保存过的路径状态和属性
+
+    }
+</script>
+
+
+</html>
