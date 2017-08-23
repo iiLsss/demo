@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+       padding: 0 200px; 
+      /* margin:0 200px */
+    }
+    .middle {
+      float: left;
+      width: 100%;
+      height: 200px;
+      background: orange;
+    }
+    .left,
+    .right {
+      position:relative;
+      float: left;
+      width: 200px;
+      height: 200px;
+      background: blueviolet;
+    }
+
+    .left {
+      margin-left: -100%;
+      left:-200px
+    }
+
+    .right {
+      margin-left: -200px;
+      right:-200px;
+    }
+
+
+  </style>
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="middle">我是中间</div>
+    <div class="left">我是左边</div>
+    <div class="right">我是右边</div>
+  </div>
+</body>
+
+</html>
