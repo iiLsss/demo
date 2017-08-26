@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  *{
+    margin:0;
+    padding:0;
+  }
+  .loading{
+    position:fixed;
+    height:100%;
+    width:100%;
+    background:#fff
+  }
+  .loading .animate{
+    position:absolute;
+    width:160px;
+    height:20px;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    margin:auto;
+    background:url(./images/loading.gif)
+  }
+  img{
+    width:100%;
+  }
+</style>
+<script>
+  document.onreadystatechange = function(){
+    console.log(document.readyState);
+    if(document.readyState === 'complete') {
+       var oLoading = document.getElementsByClassName('loading')[0]
+      oLoading.style.display = "none"
+    }
+  }
+</script>
+</head>
+<body>
+  <div class="loading">
+    <div class="animate"></div>
+  </div>
+  <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1503719811899&di=9d67f4ddfa8b289416016d218739b105&imgtype=0&src=http%3A%2F%2Fwww.bz55.com%2Fuploads%2Fallimg%2F140327%2F137-14032G62125.jpg" alt="">
+  <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1503719811899&di=7346cc39f5895ee06e5f55b84b111015&imgtype=0&src=http%3A%2F%2Fwww.1tong.com%2Fuploads%2Fwallpaper%2Feconomy%2F218-4-1920x1080.jpg" alt="">
+  <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1503719811900&di=70bd27912fc4ae7af9565aa5378ca6c0&imgtype=0&src=http%3A%2F%2Ff5.topit.me%2F5%2F8f%2F96%2F11735987861ea968f5o.jpg" alt="">
+  <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3844286173,2181731772&fm=26&gp=0.jpg" alt="">
+  <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3844286173,2181731772&fm=26&gp=0.jpg" alt="">
+  <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1503719811900&di=70bd27912fc4ae7af9565aa5378ca6c0&imgtype=0&src=http%3A%2F%2Ff5.topit.me%2F5%2F8f%2F96%2F11735987861ea968f5o.jpg" alt="">
+</body>
+</html>

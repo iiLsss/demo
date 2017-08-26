@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .loading {
+      position: fixed;
+      height: 100%;
+      width: 100%;
+      background: #fff
+    }
+
+    .loading .animate {
+      position: absolute;
+      /* width:160px; */
+      /* height:20px; */
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      margin: auto;
+      /* background:url(./images/loading.gif) */
+    }
+
+    img {
+      width: 100%;
+    }
+
+    @keyframes lds-spinner {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    @-webkit-keyframes lds-spinner {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    .lds-spinner {
+      position: relative;
+    }
+
+    .lds-spinner div {
+      left: 94px;
+      top: 48px;
+      position: absolute;
+      -webkit-animation: lds-spinner linear 1s infinite;
+      animation: lds-spinner linear 1s infinite;
+      background: #fc4309;
+      width: 12px;
+      height: 24px;
+      border-radius: 40%;
+      -webkit-transform-origin: 6px 52px;
+      transform-origin: 6px 52px;
+    }
+
+    .lds-spinner div:nth-child(1) {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+      -webkit-animation-delay: -0.916666666666667s;
+      animation-delay: -0.916666666666667s;
+    }
+
+    .lds-spinner div:nth-child(2) {
+      -webkit-transform: rotate(30deg);
+      transform: rotate(30deg);
+      -webkit-animation-delay: -0.833333333333333s;
+      animation-delay: -0.833333333333333s;
+    }
+
+    .lds-spinner div:nth-child(3) {
+      -webkit-transform: rotate(60deg);
+      transform: rotate(60deg);
+      -webkit-animation-delay: -0.75s;
+      animation-delay: -0.75s;
+    }
+
+    .lds-spinner div:nth-child(4) {
+      -webkit-transform: rotate(90deg);
+      transform: rotate(90deg);
+      -webkit-animation-delay: -0.666666666666667s;
+      animation-delay: -0.666666666666667s;
+    }
+
+    .lds-spinner div:nth-child(5) {
+      -webkit-transform: rotate(120deg);
+      transform: rotate(120deg);
+      -webkit-animation-delay: -0.583333333333333s;
+      animation-delay: -0.583333333333333s;
+    }
+
+    .lds-spinner div:nth-child(6) {
+      -webkit-transform: rotate(150deg);
+      transform: rotate(150deg);
+      -webkit-animation-delay: -0.5s;
+      animation-delay: -0.5s;
+    }
+
+    .lds-spinner div:nth-child(7) {
+      -webkit-transform: rotate(180deg);
+      transform: rotate(180deg);
+      -webkit-animation-delay: -0.416666666666667s;
+      animation-delay: -0.416666666666667s;
+    }
+
+    .lds-spinner div:nth-child(8) {
+      -webkit-transform: rotate(210deg);
+      transform: rotate(210deg);
+      -webkit-animation-delay: -0.333333333333333s;
+      animation-delay: -0.333333333333333s;
+    }
+
+    .lds-spinner div:nth-child(9) {
+      -webkit-transform: rotate(240deg);
+      transform: rotate(240deg);
+      -webkit-animation-delay: -0.25s;
+      animation-delay: -0.25s;
+    }
+
+    .lds-spinner div:nth-child(10) {
+      -webkit-transform: rotate(270deg);
+      transform: rotate(270deg);
+      -webkit-animation-delay: -0.166666666666667s;
+      animation-delay: -0.166666666666667s;
+    }
+
+    .lds-spinner div:nth-child(11) {
+      -webkit-transform: rotate(300deg);
+      transform: rotate(300deg);
+      -webkit-animation-delay: -0.083333333333333s;
+      animation-delay: -0.083333333333333s;
+    }
+
+    .lds-spinner div:nth-child(12) {
+      -webkit-transform: rotate(330deg);
+      transform: rotate(330deg);
+      -webkit-animation-delay: 0s;
+      animation-delay: 0s;
+    }
+
+    .lds-spinner {
+      width: 200px !important;
+      height: 200px !important;
+      -webkit-transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+      transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+    }
+  </style>
+  <script>
+    document.onreadystatechange = function () {
+      console.log(document.readyState);
+      if (document.readyState === 'complete') {
+        var oLoading = document.getElementsByClassName('loading')[0]
+        oLoading.style.display = "none"
+      }
+    }
+  </script>
+</head>
+
+<body>
+
+  <div class="loading lds-css ng-scope">
+    <div class="animate lds-spinner" style="width:100%;height:100%">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+
+
+  <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504317217&di=f3f392ff3ea67448425e6d73d2393339&imgtype=jpg&er=1&src=http%3A%2F%2Fattachments.gfan.com%2Fattachments2%2Fday_110427%2F1104272109ddc6dfc52701b2d5.jpg"
+    alt="">
+  <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1503722495922&di=467778b440eb3d9b984f8cf1e6172e09&imgtype=0&src=http%3A%2F%2Fimg2.niutuku.com%2Fdesk%2F1208%2F2012%2Fntk-2012-5563.jpg"
+    alt="">
+  <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1503722495922&di=78fb1d369d111db704eb657a907e00d1&imgtype=0&src=http%3A%2F%2Ft1.niutuku.com%2F960%2F26%2F26-405633.jpg"
+    alt="">
+  <img src="" alt="">
+  <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1503722495922&di=980ec13badd982f6da870496ea445579&imgtype=0&src=http%3A%2F%2Fwww.pp3.cn%2Fuploads%2Fallimg%2F111120%2F15212A9B-8.jpg" alt="">
+  <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1503722495921&di=b990c8a1c46f20125d89b803f16b32e2&imgtype=0&src=http%3A%2F%2Fwww.bz55.com%2Fuploads%2Fallimg%2F150326%2F139-1503260UH9.jpg"
+    alt="">
+</body>
+
+</html>
