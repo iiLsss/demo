@@ -84,7 +84,9 @@ xhr.send(null)
     }
   }
 }
-  当请求状态改变时，XMLHtppRequest对象调用onreadeystatechange属性注册的时间处理器，在处理响应之前，时间处理器应该首先检查readyStatus的值和HTTP状态。当请求完成加载(readyStatus == 4) 并且响应已经成功(HTTP状态值为200),就可以处理响应内容
+  当请求状态改变时，XMLHtppRequest对象调用onreadeystatechange属性注册的时间处理器，在处理响应之前，
+  时间处理器应该首先检查readyStatus的值和HTTP状态。当请求完成加载(readyStatus == 4) 并且响应已经成功(HTTP状态值为200),
+  就可以处理响应内容
 readyState对象状态值
 0 (为初始化)对象已建立，但是尚未初始化(尚未调用open方法)
 1 (初始化)对象已建立，尚未调用send方法
@@ -98,9 +100,11 @@ readyState对象状态值
 - webpack与gulp区别
 
 ```a
-webpack是一个前端模块化方案，更侧重模块打包，我们可以把开发中的所有资源（图片、js文件、css文件等）都看成模块，通过loader（加载器）和plugins（插件）对资源进行处理，打包成符合生产环境部署的前端资源。
+webpack是一个前端模块化方案，更侧重模块打包，我们可以把开发中的所有资源（图片、js文件、css文件等）都看成模块，
+通过loader（加载器）和plugins（插件）对资源进行处理，打包成符合生产环境部署的前端资源。
 
-gulp强调的是前端开发的工作流程，我们可以通过配置一系列的task，定义task处理的事务（例如文件压缩合并、雪碧图、启动server、版本控制等），然后定义执行顺序，来让gulp执行这些task，从而构建项目的整个前端开发流程。
+gulp强调的是前端开发的工作流程，我们可以通过配置一系列的task，定义task处理的事务（例如文件压缩合并、雪碧图、
+启动server、版本控制等），然后定义执行顺序，来让gulp执行这些task，从而构建项目的整个前端开发流程。
 ```
 
 - [兼容性问题](https://github.com/zuojj/fedlab/issues/5)
@@ -131,7 +135,8 @@ html模板处理  HtmlWebpackPlugin
 
 ### 浏览器兼容性
 
-```a
+- [浏览器兼容性汇总](https://juejin.im/post/59a3f2fe6fb9a0249471cbb4?utm_source=gold_browser_extension)
 
+```a
 
 ```
