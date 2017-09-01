@@ -1,5 +1,7 @@
 # es6
 
+[文档](http://es6.ruanyifeng.com/#docs/intro)
+
 ## 声明方式
 
 - let 局部声明
