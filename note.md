@@ -302,7 +302,7 @@ word-wrap的break-word值允许单词内换行
 11. 如何让已知高度的容器在页面中水平垂直居中？
 
 ```
-.text{position:absolute;top:50%;left:50%;width:200px;height:200pxmargin:-100px 0 0 -100px}
+.text{position:absolute;top:50%;left:50%;width:200px;height:200px;margin:-100px 0 0 -100px}
 已知高宽
 ```
 
@@ -352,3 +352,35 @@ a{outline:none}
 ```
 
 ```
+
+
+1. Doctype作用？标准模式与兼容模式各有什么区别?
+2. 行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？
+3. html5有哪些新特性、移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5
+4. 简述一下你对HTML语义化的理解？
+5. 标签上的title和alt属性的区别
+6. 介绍一下标准的CSS的盒子模型？低版本IE的盒子模型有什么不同的？
+7. 请你写出三列布局,左右各200px,中间自适应
+8. 请简要描述em和rem的区别
+9. CSS优先级算法如何计算？
+10. div垂直水平居中
+11. js中== 和 ===的区别
+12. 反转字符串
+13. 数组去重、原型扩展
+14. Ajax 是什么? 如何创建一个Ajax？
+15. 简要说明Ajax优缺点
+16. 解释jquery的时间委托机制和应用场景
+17. URL 到页面加载显示完成，这个过程中都发生了什么
+18. 浏览器渲染页面的过程
+19. 实现跨域的几种方式
+20. 列出前端减少页面加载时间的三种方式
+
+### 关于VUE常问的问题
+1. vue1与vue2的区别
+2. vue 兄弟组件 父子组件传值
+3. vue 声明周期
+4. vue 中created computed 用来做什么 使用场景
+5. vue-router的原理
+
+
+

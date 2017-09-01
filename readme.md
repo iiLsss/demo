@@ -1,7 +1,7 @@
 # 基础知识总结
 
-- HTML基础问题
-- CSS布局
+- HTML
+- CSS
 - JavaScript
   - 基本数据类型
   - 作用域与闭包
@@ -13,44 +13,7 @@
 - vue
 - node
 
-- Doctype作用？标准模式与兼容模式有什么区别
 
-```a
-1. Doctype告知浏览器的解析器用什么文档标准解析文档
-2.标准模式的排版与js运作模式都是以浏览器支持的最高标准运行，兼容模式是页面也向后兼容方式显示，
-```
-
-- 介绍一下你对浏览器内核的理解？
-
-```a
-渲染引擎和js引擎
-渲染引擎负责网页的内容HTML、CSS
-js引擎解析和执行JavaScript代码
-
-```
-
-- 将所有类名为table的table表格#f8f8f8到#ffffff隔行换色
-
-```a
-CSS3选择器 odd集数 even偶数
-$('.table tr:odd').css({background:'#f8f8f8'}) 奇数
-$('.table tr:even').css({background:'#ffffff'}) 偶数
-```
-
-- 比如访问https://www.murphylsss.cn/?id=1000&name=lsss这个页面时，如何从网址中分离id的值
-
-```a
-var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)')
-
-```
-
-- 比如网址 https://www.murphylsss.cn/home/index/title?id=1000&name=lsss#main 中的query hash path各指的是什么?
-
-```a
-query    ?id=1000&name=lsss
-hash     #main
-pathname /home/index/title
-```
 
 - Ajax
 
