@@ -180,5 +180,21 @@ const arr = [...(x > 0 ? ['lsss'] : []), 'LSSS']
 
 ```
 
+> 声明两个数组arr1和arr2，然后我们把arr1赋值给arr2，然后我们改变arr2的值，你会发现arr1的值也改变了，因为我们这是对内存堆栈的引用，而不是真正的赋值。利用对象扩展运算符简单的解决这个问题
+
+```a
+let arr1 = ['a', 'b', 'c']
+let arr2 = arr1
+arr2.push('d')
+console.log(arr1); //["a", "b", "c", "d"]
+会改变arr1数组的值
+
+let arr1 = ['a', 'b', 'c']
+let arr2 = [...arr1]
+arr2.push('d')
+console.log(arr1); //["a", "b", "c"]
+不会改变arr1数组的值
+
+```
 
 ## 字符串模板

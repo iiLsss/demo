@@ -8,7 +8,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
  * @Author: iiLsss 
  * @Date: 2017-09-02 08:32:59 
  * @Last Modified by: iiLss
- * @Last Modified time: 2017-09-05 22:23:14
+ * @Last Modified time: 2017-09-05 22:35:43
  */
 
 // {
@@ -85,6 +85,11 @@ function push(array) {
   console.log(array);
 }
 push.apply(undefined, [[5]].concat(['x', 'x', 'y', 'z']));
+
+var arr1 = ['a', 'b', 'c'];
+var arr2 = [].concat(arr1);
+arr2.push('d');
+console.log(arr1); //["a", "b", "c", "d"]
 // let foo;
 // ({foo} = {foo:'lsss'})
 // console.log(foo);
