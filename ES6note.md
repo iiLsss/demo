@@ -134,8 +134,4 @@ console.log(f); s
 
 ## 对象扩展运算符
 
-
-rest ...
-for of
-
 ## 字符串模板
