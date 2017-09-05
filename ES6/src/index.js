@@ -2,7 +2,7 @@
  * @Author: iiLsss 
  * @Date: 2017-09-02 08:32:59 
  * @Last Modified by: iiLss
- * @Last Modified time: 2017-09-02 09:16:36
+ * @Last Modified time: 2017-09-05 22:23:14
  */
 
 
@@ -61,6 +61,13 @@ console.log(d);
 console.log(e);
 console.log(f);
 
+console.log(...[1,2,3,4]);
+
+function push(array, ...items){
+  array.push(...items)
+  console.log(array);
+}
+push([5],...['x', 'x', 'y', 'z'])
 // let foo;
 // ({foo} = {foo:'lsss'})
 // console.log(foo);

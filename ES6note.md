@@ -132,6 +132,53 @@ console.log(e); s
 console.log(f); s
 ```
 
-## 对象扩展运算符
+## 扩展运算符
+
+- 扩展运算符是三个点(...)。讲一个数组转为逗号分隔的参数序列
+
+```...
+
+console.log(...[1,2,3,4]) // 1 2 3 4
+console.log(1, ...[2, 3, 4], 5)  // 1 2 3 4 5
+
+[...document.querySelectorAll('div')] // [<div>, <div>, <div>]
+```
+
+改运算符只要用于函数调用
+
+```function
+
+function push(array, ...items){
+  array.push(...items)
+  console.log(array);
+}
+push([5],...['x', 'x', 'y', 'z'])
+[5, "x", "x", "y", "z"]
+```
+
+扩展运算符与正常的函数参数可以结合使用，非常灵活
+
+```a
+function f(v, w, x, y, z){}
+var args = [0, 1]
+f(-1, ...args, 2, ...[3])
+
+```
+
+扩展运算符后面还可以放置表达式
+
+```a
+const arr = [...(x > 0 ? ['lsss'] : []), 'LSSS']
+
+```
+
+如果扩展运算符后面是一个空数组，则不产生任何效果。
+
+```a
+[...[], 4]
+//[4]
+
+```
+
 
 ## 字符串模板
