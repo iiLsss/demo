@@ -2,7 +2,7 @@
  * @Author: iiLsss 
  * @Date: 2017-09-02 08:32:59 
  * @Last Modified by: iiLss
- * @Last Modified time: 2017-09-05 22:35:43
+ * @Last Modified time: 2017-09-06 15:43:48
  */
 
 
@@ -53,26 +53,46 @@
 // ({foo} = {foo:'iiLsss'})
 // console.log(foo);
 
-const [a, b, c, d, e, f] = 'iiLsss'
-console.log(a);
-console.log(b);
-console.log(c);
-console.log(d);
-console.log(e);
-console.log(f);
+// const [a, b, c, d, e, f] = 'iiLsss'
+// console.log(a);
+// console.log(b);
+// console.log(c);
+// console.log(d);
+// console.log(e);
+// console.log(f);
 
-console.log(...[1,2,3,4]);
+// console.log(...[1,2,3,4]);
 
-function push(array, ...items){
-  array.push(...items)
-  console.log(array);
-}
-push([5],...['x', 'x', 'y', 'z'])
+// function push(array, ...items){
+//   array.push(...items)
+//   console.log(array);
+// }
+// push([5],...['x', 'x', 'y', 'z'])
 
-let arr1 = ['a', 'b', 'c']
-let arr2 = [...arr1]
-arr2.push('d')
-console.log(arr1); //["a", "b", "c", "d"]
+// let arr1 = ['a', 'b', 'c']
+// let arr2 = [...arr1]
+// arr2.push('d')
+// console.log(arr1); //["a", "b", "c", "d"]
+
+// for (let codePoint of 'lsss') {
+//   console.log(codePoint);
+// }// l s s s 
+
+
+let A = {a:'', b:''}
+let B = {a:999, b:888, c:777, d:666}
+
+[B, A] = [A, B]
+
+
+let x = 1;
+let y = 2;
+
+[x, y] = [y, x]
+console.log(x);
+console.log(y);
+// console.log(b);
+
 // let foo;
 // ({foo} = {foo:'lsss'})
 // console.log(foo);

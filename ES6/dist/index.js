@@ -1,14 +1,10 @@
 'use strict';
 
-var _console;
-
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
 /*
  * @Author: iiLsss 
  * @Date: 2017-09-02 08:32:59 
  * @Last Modified by: iiLss
- * @Last Modified time: 2017-09-05 22:35:43
+ * @Last Modified time: 2017-09-06 15:43:48
  */
 
 // {
@@ -58,38 +54,46 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 // ({foo} = {foo:'iiLsss'})
 // console.log(foo);
 
-var _iiLsss = 'iiLsss',
-    _iiLsss2 = _slicedToArray(_iiLsss, 6),
-    a = _iiLsss2[0],
-    b = _iiLsss2[1],
-    c = _iiLsss2[2],
-    d = _iiLsss2[3],
-    e = _iiLsss2[4],
-    f = _iiLsss2[5];
+// const [a, b, c, d, e, f] = 'iiLsss'
+// console.log(a);
+// console.log(b);
+// console.log(c);
+// console.log(d);
+// console.log(e);
+// console.log(f);
 
-console.log(a);
-console.log(b);
-console.log(c);
-console.log(d);
-console.log(e);
-console.log(f);
+// console.log(...[1,2,3,4]);
 
-(_console = console).log.apply(_console, [1, 2, 3, 4]);
+// function push(array, ...items){
+//   array.push(...items)
+//   console.log(array);
+// }
+// push([5],...['x', 'x', 'y', 'z'])
 
-function push(array) {
-  for (var _len = arguments.length, items = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-    items[_key - 1] = arguments[_key];
-  }
+// let arr1 = ['a', 'b', 'c']
+// let arr2 = [...arr1]
+// arr2.push('d')
+// console.log(arr1); //["a", "b", "c", "d"]
 
-  array.push.apply(array, items);
-  console.log(array);
-}
-push.apply(undefined, [[5]].concat(['x', 'x', 'y', 'z']));
+// for (let codePoint of 'lsss') {
+//   console.log(codePoint);
+// }// l s s s 
 
-var arr1 = ['a', 'b', 'c'];
-var arr2 = [].concat(arr1);
-arr2.push('d');
-console.log(arr1); //["a", "b", "c", "d"]
+
+var A = { a: '', b: '' };
+var B = { a: 999, b: 888, c: 777, d: 666 }[(B, A)] = [A, B];
+
+var x = 1;
+var y = 2;
+
+var _ref = [y, x];
+x = _ref[0];
+y = _ref[1];
+
+console.log(x);
+console.log(y);
+// console.log(b);
+
 // let foo;
 // ({foo} = {foo:'lsss'})
 // console.log(foo);
