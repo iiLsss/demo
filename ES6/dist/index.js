@@ -3,8 +3,8 @@
 /*
  * @Author: iiLsss 
  * @Date: 2017-09-02 08:32:59 
- * @Last Modified by: iiLss
- * @Last Modified time: 2017-09-06 15:43:48
+ * @Last Modified by: iiLsss
+ * @Last Modified time: 2018-03-06 16:36:19
  */
 
 // {
@@ -80,18 +80,18 @@
 // }// l s s s 
 
 
-var A = { a: '', b: '' };
-var B = { a: 999, b: 888, c: 777, d: 666 }[(B, A)] = [A, B];
+// let A = {a:'', b:''}
+// let B = {a:999, b:888, c:777, d:666}
 
-var x = 1;
-var y = 2;
+// [B, A] = [A, B]
 
-var _ref = [y, x];
-x = _ref[0];
-y = _ref[1];
 
-console.log(x);
-console.log(y);
+// let x = 1;
+// let y = 2;
+
+// [x, y] = [y, x]
+// console.log(x);
+// console.log(y);
 // console.log(b);
 
 // let foo;
@@ -103,3 +103,77 @@ console.log(y);
 // console.log(b);
 // console.log(c);
 // console.log(d);
+
+// let json = {
+//   '0': 'l',
+//   '1': {
+//     '0':'aaa',
+//     '1':'bbb',
+//     '2':12123,
+//     length: 3
+//   },
+//   '2': 100,
+//   length:3
+// }
+// let arr = Array.from(json)
+// console.log(arr);
+
+// let arr1 = Array.of(2, 3, 4, 5)
+// console.log(arr1)
+
+// let arr3 = ['a', 'b', 'c', 'b', 'e', 'f', 'g', 'h']
+// arr3.fill('lsss', 2, 5)
+// console.log(arr3)
+
+// 从 把 替换 2 3 4 替换
+
+var arr = ['a', 'b', 'c', 'b', 'e', 'f', 'g', 'h'];
+var _iteratorNormalCompletion = true;
+var _didIteratorError = false;
+var _iteratorError = undefined;
+
+try {
+  for (var _iterator = arr[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+    var item = _step.value;
+
+    console.log(item);
+  }
+} catch (err) {
+  _didIteratorError = true;
+  _iteratorError = err;
+} finally {
+  try {
+    if (!_iteratorNormalCompletion && _iterator.return) {
+      _iterator.return();
+    }
+  } finally {
+    if (_didIteratorError) {
+      throw _iteratorError;
+    }
+  }
+}
+
+var _iteratorNormalCompletion2 = true;
+var _didIteratorError2 = false;
+var _iteratorError2 = undefined;
+
+try {
+  for (var _iterator2 = arr.keys()[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+    var index = _step2.value;
+
+    console.log(index);
+  }
+} catch (err) {
+  _didIteratorError2 = true;
+  _iteratorError2 = err;
+} finally {
+  try {
+    if (!_iteratorNormalCompletion2 && _iterator2.return) {
+      _iterator2.return();
+    }
+  } finally {
+    if (_didIteratorError2) {
+      throw _iteratorError2;
+    }
+  }
+}
