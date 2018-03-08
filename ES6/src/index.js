@@ -2,7 +2,7 @@
  * @Author: iiLsss 
  * @Date: 2017-09-02 08:32:59 
  * @Last Modified by: iiLsss
- * @Last Modified time: 2018-03-06 16:37:24
+ * @Last Modified time: 2018-03-08 15:50:16
  */
 
 
@@ -126,11 +126,24 @@
 
 // 从 把 替换 2 3 4 替换
 
-let arr = ['a', 'b', 'c', 'b', 'e', 'f', 'g', 'h']
-for (let item of arr){
-  console.log(item)
+// let arr = ['a', 'b', 'c', 'b', 'e', 'f', 'g', 'h']
+// for (let item of arr){
+//   console.log(item)
+// }
+// for ( let index of arr.keys() ) {
+//   console.log(index);
+// }
+
+//
+
+let json = {
+  "a": 1234
 }
-for ( let index of arr.keys() ) {
-  console.log(index);
+
+function demo({a,b='aaa'}){
+  console.log(a,b)
 }
+
+demo(json)
+
 

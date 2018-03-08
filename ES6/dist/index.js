@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
 /*
  * @Author: iiLsss 
  * @Date: 2017-09-02 08:32:59 
  * @Last Modified by: iiLsss
- * @Last Modified time: 2018-03-06 16:36:19
+ * @Last Modified time: 2018-03-08 15:49:43
  */
 
 // {
@@ -127,53 +127,25 @@
 
 // 从 把 替换 2 3 4 替换
 
-var arr = ['a', 'b', 'c', 'b', 'e', 'f', 'g', 'h'];
-var _iteratorNormalCompletion = true;
-var _didIteratorError = false;
-var _iteratorError = undefined;
+// let arr = ['a', 'b', 'c', 'b', 'e', 'f', 'g', 'h']
+// for (let item of arr){
+//   console.log(item)
+// }
+// for ( let index of arr.keys() ) {
+//   console.log(index);
+// }
 
-try {
-  for (var _iterator = arr[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-    var item = _step.value;
 
-    console.log(item);
-  }
-} catch (err) {
-  _didIteratorError = true;
-  _iteratorError = err;
-} finally {
-  try {
-    if (!_iteratorNormalCompletion && _iterator.return) {
-      _iterator.return();
-    }
-  } finally {
-    if (_didIteratorError) {
-      throw _iteratorError;
-    }
-  }
+var json = {
+  "a": 1234
+};
+
+function demo(_ref) {
+  var a = _ref.a,
+      _ref$b = _ref.b,
+      b = _ref$b === undefined ? 'aaa' : _ref$b;
+
+  console.log(a, b);
 }
 
-var _iteratorNormalCompletion2 = true;
-var _didIteratorError2 = false;
-var _iteratorError2 = undefined;
-
-try {
-  for (var _iterator2 = arr.keys()[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-    var index = _step2.value;
-
-    console.log(index);
-  }
-} catch (err) {
-  _didIteratorError2 = true;
-  _iteratorError2 = err;
-} finally {
-  try {
-    if (!_iteratorNormalCompletion2 && _iterator2.return) {
-      _iterator2.return();
-    }
-  } finally {
-    if (_didIteratorError2) {
-      throw _iteratorError2;
-    }
-  }
-}
+demo(json);
