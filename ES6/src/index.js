@@ -2,7 +2,7 @@
  * @Author: iiLsss 
  * @Date: 2017-09-02 08:32:59 
  * @Last Modified by: iiLsss
- * @Last Modified time: 2018-03-08 15:50:16
+ * @Last Modified time: 2018-03-08 17:59:08
  */
 
 
@@ -134,7 +134,7 @@
 //   console.log(index);
 // }
 
-//
+//对象的函数解构
 
 let json = {
   "a": 1234
@@ -147,3 +147,6 @@ function demo({a,b='aaa'}){
 demo(json)
 
 
+// 数组的函数解构
+
+let arr = ['a', 'b', 'c', 'b']
