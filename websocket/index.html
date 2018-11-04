@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>聊天室</title>
+  <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/4.0.0-alpha.2/css/bootstrap.css">
+  <link rel="stylesheet" href="http://cdn.bootcss.com/tether/1.3.2/css/tether.css" />
+  <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+  <script src="http://cdn.bootcss.com/tether/1.3.2/js/tether.js"></script>
+  <script src="http://cdn.bootcss.com/bootstrap/4.0.0-alpha.2/js/bootstrap.js"></script>
+
+</head>
+<body>
+<div id="app">
+  <div class="vertical-center">
+    <div class="container">
+      <h2>多人在线聊天DEMO</h2>
+      <hr />
+      <p>当前在线人数：<span id="count_people">{{num}}</span></p>
+      <ul id="messages" class="list-unstyled">
+        <li v-for="(item, key) in arr">
+          <span class="label" :class="[key%2 == 0 ? 'label-info' : 'label-success']">{{item.name}}</span>
+          {{item.content}}
+        </li>
+      </ul>
+      <hr />
+      <div class="form-group">
+        <input class="form-control" type="text" @keyup.enter="send" :placeholder="tips" v-model="text" autofocus />
+      </div>
+      <button class="btn btn-primary" @click="send">{{btnText}}</button>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    let webSocket = new WebSocket('ws://127.0.0.1:8090/')
+
+    var vm = new Vue({
+      el: "#app",
+      data :{
+        msg: '',
+        text: '',
+        name: '',
+        num: 0,
+        tips: '请输入姓名',
+        btnText: '加入聊天室',
+        isWarn: false,
+        arr: [],
+        webSocket: '',
+      },
+      methods: {
+        send() {
+          if (!this.text) {
+            this.isWarn = true
+            return
+          }
+
+          if (!this.name) {
+            //开启连接
+            this.btnText = '发送'
+            this.tips = '请输入内容'
+            this.name = this.text
+            this.text = ''
+            var str = `${this.name}`
+            webSocket.send(str)
+
+          } else {
+          var str = `${this.name}|${this.text}`
+          webSocket.send(str)
+          console.log(str)
+          this.text = ''
+
+          }
+        }
+      },
+      mounted() {
+
+
+        let self = this
+        webSocket.onopen = () => {
+          console.log('webSocket open');
+        };
+        //关闭连接
+        webSocket.onclose = function () {
+          console.log('webSocket close');
+        };
+
+        //拿到返回
+        webSocket.onmessage = function (e) {
+          console.log(e);
+          var content = e.data.split('|')
+          self.num = content[2]
+          self.arr.push({
+            name: content[0],
+            content: content[1]
+          })
+        }
+      },
+      watch: {
+        text: function (val, newVal) {
+          console.log(typeof newVal)
+          if (!newVal) {
+            this.isWarn = false
+          }
+        }
+      }
+    })
+  
+  </script>
+</body>
+</html>
